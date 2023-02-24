@@ -1,8 +1,8 @@
 import { Select, MenuItem } from '@material-ui/core';
-//import { nationalityList } from './nationalities';
+import { nationalityList } from './nationalities';
 
 
-function NationalityDropdown() {
+export function NationalityDropdown() {
     const [nationality, setNationality] = useState('');
     
     const handleNationalityChange = (event) => {
@@ -10,7 +10,7 @@ function NationalityDropdown() {
     };
     
     return (
-      <Select value={nationality} onChange={handleNationalityChange}>
+      <Select margin="normal" value={nationality} onChange={handleNationalityChange}>
         {nationalityList.map((nationality) => (
           <MenuItem key={nationality.code} value={nationality.code}>
             {nationality.name}
