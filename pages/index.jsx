@@ -20,6 +20,8 @@ import SexoDropdown from "../components/SexoDropdown";
 import TipoDocumentoDropdown from "../components/documentTypeDropdown";
 import EstadoDropdown from "../components/estadosBrasileirosSelect";
 
+import cepForm from "../components/cepComponent";
+
 const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
@@ -46,6 +48,7 @@ const Form = () => {
   const [propertyRegime, setPropertyRegime] = useState("");
   const [politicallyExposed, setPoliticallyExposed] = useState("");
   const [investigatedForTerrorism, setInvestigatedForTerrorism] = useState("");
+  const [isExterior, setIsExterior] = useState(false);
   const [isBloqueado, setIsBloqueado] = useState(false);
   const [nationality, setNationality] = useState("");
 
@@ -68,6 +71,13 @@ const Form = () => {
   const handleInvestigatedForTerrorismChange = (event) => {
     setInvestigatedForTerrorism(event.target.value);
   };
+
+  //handleExteriorChange
+
+  const handleExteriorChange = (event) => {
+    setIsExterior(event.target.checked);
+  };
+
 
   const handleChange = (event) => {
     setIsBloqueado(event.target.checked);
@@ -328,8 +338,8 @@ const Form = () => {
                 control={
                   <Checkbox
                     name="bloquearCadastro"
-                    checked={isBloqueado}
-                    onChange={handleChange}
+                    checked={isExterior}
+                    onChange={handleExteriorChange}
                   />
                 }
                 label="Bloquear Cadastro"
@@ -430,12 +440,49 @@ const Form = () => {
             </Grid>
 
             <Grid item xs={2}></Grid>
+            <Grid item xs={6}>
+              <TextField
+                label="Município"
+                type="textbox"
+                fullWidth
+                margin="normal"
+              />
+            </Grid>
+
+            <Grid item xs={2}>
+              <TextField
+                label="UF"
+                type="textbox"
+                fullWidth
+                margin="normal"
+              />
+            </Grid>
+
+            <Grid item xs={2}>
+              <FormControlLabel
+                control={
+                  <Checkbox
+                    name="cidadeNoExterior"
+                    checked={isExterior}
+                    onChange={handleExteriorChange}
+                  />
+                }
+                label="Cidade no exterior"
+              />
+            </Grid>
+
+            <Grid item xs={2}></Grid>
             <Grid item xs={10}>
               <Typography variant="h5" color="primary">
                 Endereço Residencial
               </Typography>
               <Divider />
             </Grid>
+
+                {/*
+                é brincadeira viu
+              */}
+              <cepForm></cepForm>
 
             <Grid item xs={2}></Grid>
             <Grid item xs={10}>
